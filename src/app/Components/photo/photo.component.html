@@ -1,0 +1,30 @@
+<table class="table table-striped table-responsive" *ngIf="photos && photos.length > 0">
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Photo Name</th>
+      <th>Photo Date</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let photo of photos">
+        <td><img [src]="photo.photo" width="75px" height="75px" [alt]="photo.photo_name"></td>
+        <td>{{ photo.photo_name }}</td>
+        <td>{{ photo.photo_date | date }}</td>
+        <td><button [routerLink]="['/edit-photo', photo.photo_id]" class="btn"><i class="fas fa-edit" aria-hidden="true"></i></button></td>
+        <td><button class="btn" (click)="deletePhoto(photo)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+    </tr>
+  </tbody>      
+</table>
+
+<div *ngIf="photos && photos.length === 0" class="alert alert-info" style="margin: 50px;">
+    No photos found for this claim.
+</div>
+
+<label for="fileInput" class="btn btn-warning" style="margin-left: 50px;">
+  <i class="fa-solid fa-plus" aria-hidden="true"></i>&nbsp;Add a Photo
+</label>
+<input id="fileInput" (change)="onFileChange($event)" type="file" style="display: none;">
+
+<button (click)="revenir()" class="btn btn-primary" style="float: right; margin-right: 50px;"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back</button>

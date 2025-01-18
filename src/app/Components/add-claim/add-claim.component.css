@@ -1,0 +1,25 @@
+input.ng-invalid
+{
+    border-right: 5px solid red;
+}
+
+input.ng-valid
+{
+    border-right: 5px solid green;
+}
+
+button
+{
+    float: right;
+    margin: 5px;
+}
+
+span
+{
+    color: red;
+}
+
+div
+{
+    border-width: 2.5px;
+}

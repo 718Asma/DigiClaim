@@ -1,0 +1,24 @@
+<br>
+<div class="container">
+    <h1 class="text-left text-secondary">Edit "{{photo?.photo_name}}"</h1>
+    <br>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmitForm()">
+        <label for="photo_name">Photo Name</label>
+        <input type="text" class="form-control" id="photo_name" formControlName="photo_name"><br>
+
+        <label for="photo_date">Photo Date</label>
+        <input type="date" class="form-control" id="photo_date" formControlName="photo_date"><br>
+
+        <label for="claim_number">Claim Number</label>
+        <select class="form-control" id="claim_number" formControlName="claim_number">
+        <option *ngFor="let claim of Claim" [value]="claim.claim_number">{{ claim.claim_number }}</option>
+        </select>
+        <br><br>
+        <hr>
+        <br>
+        <input type="submit" value="Save" class="btn btn-light">&nbsp;
+        <input type="button" value="Delete" (click)="onResetForm()" class="btn btn-light">&nbsp;
+        <input type="button" value="Back" class="btn btn-light" (click)="revenir()">
+    </form>
+</div>
+<br><br>

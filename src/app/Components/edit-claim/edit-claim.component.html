@@ -1,0 +1,32 @@
+<br>
+<div class="container" *ngIf="claim">
+    <h1 class="text-left text-secondary">Edit {{claim.claim_number}}</h1>
+    <br>
+    <form [formGroup]="editForm" (ngSubmit)="onSubmitForm()">
+        <label for="claim_number">Claim Number</label>
+        <input type="text" class="form-control" id="claim_number" formControlName="claim_number"><br>
+
+        <label for="accident_date">Accident Date</label>
+        <input type="date" class="form-control" id="accident_date" formControlName="accident_date"><br>
+
+        <label for="creation_date">Creation Date</label>
+        <input type="date" class="form-control" id="creation_date" formControlName="creation_date"><br>
+
+        <label for="status"><strong>Status</strong></label><br>
+        <input style="margin-left: 25px;" type="radio" value="Ouvert" name="status" formControlName="status">Ouvert<br>
+        <input style="margin-left: 25px;" type="radio" value="Expertise" name="status" formControlName="status">Expertise<br>
+        <input style="margin-left: 25px;" type="radio" value="Terminé" name="status" formControlName="status">Terminé<br><br>
+
+        <label for="contract_number">Contract Number</label>
+        <select class="form-control" id="contract_number" formControlName="contract_number">
+        <option *ngFor="let contractNumber of Contract" [value]="contractNumber">{{ contractNumber }}</option>
+        </select>
+        <br><br>
+        <hr>
+        <br>
+        <input type="submit" value="Save" class="btn btn-light">&nbsp;
+        <input type="button" value="Delete" (click)="onResetForm()" class="btn btn-light">&nbsp;
+        <input type="button" value="Back" class="btn btn-light" (click)="revenir()">
+    </form>
+</div>
+<br><br>

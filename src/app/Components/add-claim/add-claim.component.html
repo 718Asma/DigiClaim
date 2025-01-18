@@ -1,0 +1,188 @@
+<br>
+<div class="container">
+    <h1 class="text-left text-secondary">Add a Claim</h1>
+    <br>
+    <form [formGroup]="addClaimForm" (ngSubmit)="onSubmitForm()">
+        <label for="claim_number">Claim Number</label> <span>*</span>
+        <input type="text" class="form-control" id="claim_number" formControlName="claim_number" placeholder="Enter claim number">
+        <div *ngIf="addClaimForm.controls['claim_number'].invalid && addClaimForm.controls['claim_number'].touched" class="alert alert-danger">
+            Claim Number is required.
+        </div><br>
+
+        <label for="accident_date">Accident Date</label> <span>*</span>
+        <input type="date" class="form-control" id="accident_date" formControlName="accident_date">
+        <div *ngIf="addClaimForm.controls['accident_date'].invalid && addClaimForm.controls['accident_date'].touched" class="alert alert-danger">
+            Accident Date is required.
+        </div><br>
+
+        <label for="creation_date">Creation Date</label> <span>*</span>
+        <input type="date" class="form-control" id="creation_date" formControlName="creation_date">
+        <div *ngIf="addClaimForm.controls['creation_date'].invalid && addClaimForm.controls['creation_date'].touched" class="alert alert-danger">
+            Creation Date is required.
+        </div><br>
+
+        <label for="status"><strong>Status</strong></label> <span>*</span><br>
+        <input style="margin-left: 25px;" type="radio" value="Ouvert" name="status" formControlName="status">Ouvert<br>
+        <input style="margin-left: 25px;" type="radio" value="Expertise" name="status" formControlName="status">Expertise<br>
+        <input style="margin-left: 25px;" type="radio" value="Terminé" name="status" formControlName="status">Terminé<br><br>
+
+        <label for="contract_number">Contract Number</label> <span>*</span>
+        <select class="form-control" id="contract_number" formControlName="contract_number">
+            <option *ngFor="let contractNumber of Contract" [value]="contractNumber">{{ contractNumber }}</option>
+        </select>
+        <div *ngIf="!addContractButtonClicked && addClaimForm.controls['contract_number']?.value === ''" class="alert alert-danger">
+            Contract Number is required.
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="addContractForm()" [disabled]="addContractButtonClicked"><i class="fa-solid fa-plus" aria-hidden="true"></i>&nbsp;Add Contract</button>
+        <br><br>
+        <hr>
+        <br>
+        <div *ngFor="let contractForm of addContractForms; let i = index">
+            <form [formGroup]="contractForm">
+                <label for="contract_number"> Contract Number </label> <span>*</span>
+                <input type="text" class="form-control" id="contract_number" formControlName="contract_number" placeholder="Enter contract number">
+                <div *ngIf="contractForm.controls['contract_number'].invalid && contractForm.controls['contract_number'].touched" class="alert alert-danger">
+                    Contract Number is required.
+                </div><br>
+
+                <label for="contract_start_date"> Contract Start Date </label> <span>*</span>
+                <input type="date" class="form-control" id="contract_start_date" formControlName="contract_start_date">
+                <div *ngIf="contractForm.controls['contract_start_date'].invalid && contractForm.controls['contract_start_date'].touched" class="alert alert-danger">
+                    Contract Start Date is required.
+                </div><br>
+
+                <label for="contract_end_date"> Contract End Date </label> <span>*</span>
+                <input type="date" class="form-control" id="contract_end_date" formControlName="contract_end_date">
+                <div *ngIf="contractForm.controls['contract_end_date'].invalid && contractForm.controls['contract_end_date'].touched" class="alert alert-danger">
+                    Contract End Date is required.
+                </div><br>
+
+                <label for="insured_name">Insured Name</label> <span>*</span>
+                <select class="form-control" id="insured_name" formControlName="insured_name">
+                    <option *ngFor="let name of Insured" [value]="name">{{ name }}</option>
+                </select>
+                <div *ngIf="!addInsuredButtonClicked && contractForm.controls['insured_name']?.value === ''" class="alert alert-danger">
+                    Insured Name is required.
+                </div><br>
+        
+                <label for="vehicle_registration_number">Vehicle Registration Number</label> <span>*</span>
+                <select class="form-control" id="vehicle_registration_number" formControlName="vehicle_registration_number">
+                    <option *ngFor="let registrationNumber of Vehicle" [value]="registrationNumber">{{ registrationNumber }}</option>
+                </select>
+                <div *ngIf="!addVehiculeButtonClicked && contractForm.controls['vehicle_registration_number']?.value === ''" class="alert alert-danger">
+                    Vehicle Registration Number is required.
+                </div><br>
+                <button type="button" class="btn btn-primary" (click)="addVehiculeForm()" [disabled]="addVehiculeButtonClicked"><i class="fa-solid fa-plus" aria-hidden="true"></i>&nbsp;Add Vehicule</button>
+                <button type="button" class="btn btn-primary" (click)="addInsuredForm()" [disabled]="addInsuredButtonClicked"><i class="fa-solid fa-plus" aria-hidden="true"></i>&nbsp;Add Insured</button>
+                <button type="button" class="btn btn-primary" (click)="removeContractForm(i)"><i class="fa-solid fa-minus" aria-hidden="true"></i>&nbsp;Remove Contract</button>
+            </form>
+            <br><br>
+            <hr>
+            <br>
+            <div *ngFor="let insuredForm of addInsuredForms; let i = index">
+                <form [formGroup]="insuredForm">
+                    <label for="insured_name"> Insured Name </label> <span>*</span>
+                    <input type="text" class="form-control" id="insured_name" formControlName="insured_name" placeholder="Enter insured name">
+                    <div *ngIf="insuredForm.controls['insured_name'].invalid && insuredForm.controls['insured_name'].touched" class="alert alert-danger">
+                        Insured Name is required.
+                    </div><br>
+    
+                    <label for="insured_address"> Insured Address </label> <span>*</span>
+                    <input type="text" class="form-control" id="insured_address" formControlName="insured_address" placeholder="Enter insured address">
+                    <div *ngIf="insuredForm.controls['insured_address'].invalid && insuredForm.controls['insured_address'].touched" class="alert alert-danger">
+                        Insured Address is required.
+                    </div><br>
+    
+                    <label for="insured_phone_number"> Insured Phone Number </label> <span>*</span>
+                    <input type="number" class="form-control" id="insured_phone_number" formControlName="insured_phone_number" placeholder="123456789">
+                    <div *ngIf="insuredForm.invalid && insuredForm.controls['insured_phone_number'].invalid && insuredForm.controls['insured_phone_number'].touched" class="alert alert-danger">
+                        Insured Phone Number is required.
+                    </div><br>
+    
+                    <label for="insured_email">Insured Email</label> <span>*</span>
+                    <input type="email" class="form-control" id="insured_email" formControlName="insured_email" placeholder="Enter insured e-mail">
+                    <div *ngIf="insuredForm.controls['insured_email'].invalid && insuredForm.controls['insured_email'].touched" class="alert alert-danger">
+                        Insured Email is required.
+                    </div>
+                    <div *ngIf="insuredForm.controls['insured_email'].hasError('email')" class="alert alert-danger">
+                        Invalid email format. Valid format : example<strong>&#64;</strong>mail.com
+                    </div><br>
+
+            
+                    <label for="insured_birth_date">Insured Birth Date</label> <span>*</span>
+                    <input type="date" class="form-control" id="insured_birth_date" formControlName="insured_birth_date">
+                    <div *ngIf="insuredForm.controls['insured_birth_date'].invalid && insuredForm.controls['insured_birth_date'].touched" class="alert alert-danger">
+                        Insured Birth Date is required.
+                    </div>
+                    <br><br>
+                    <button type="button" class="btn btn-primary" (click)="addVehiculeForm()" [disabled]="addVehiculeButtonClicked"><i class="fa-solid fa-plus" aria-hidden="true"></i>&nbsp;Add Vehicule</button>
+                    <button type="button" class="btn btn-primary" (click)="removeInsuredForm(i)"><i class="fa-solid fa-minus" aria-hidden="true"></i>&nbsp;Remove Insured</button>
+                </form>
+                <br><br>
+                <hr>
+                <br>
+            </div>
+            <div *ngFor="let vehiculeForm of addVehiculeForms; let i = index">
+                <form [formGroup]="vehiculeForm">
+                    <label for="vehicle_registration_number"> Vehicle Registration Number </label> <span>*</span>
+                    <input type="text" class="form-control" id="vehicle_registration_number" formControlName="vehicle_registration_number" placeholder="Enter vehicle registration number">
+                    <div *ngIf="vehiculeForm.controls['vehicle_registration_number'].invalid && vehiculeForm.controls['vehicle_registration_number'].touched" class="alert alert-danger">
+                        Vehicle Registration Number is required.
+                    </div><br>
+    
+                    <label for="vehicle_brand"> Vehicle Brand </label> <span>*</span>
+                    <input type="text" class="form-control" id="vehicle_brand" formControlName="vehicle_brand" placeholder="Enter vehicle brand">
+                    <div *ngIf="vehiculeForm.controls['vehicle_brand'].invalid && vehiculeForm.controls['vehicle_brand'].touched" class="alert alert-danger">
+                        Vehicle Brand is required.
+                    </div><br>
+    
+                    <label for="vehicle_model"> Vehicle Model </label> <span>*</span>
+                    <input type="text" class="form-control" id="vehicle_model" formControlName="vehicle_model" placeholder="Enter vehicle model">
+                    <div *ngIf="vehiculeForm.controls['vehicle_model'].invalid && vehiculeForm.controls['vehicle_model'].touched" class="alert alert-danger">
+                        Vehicle Model is required.
+                    </div><br>
+    
+                    <label for="vehicle_type">Vehicle Type</label> <span>*</span>
+                    <input type="text" class="form-control" id="vehicle_type" formControlName="vehicle_type" placeholder="Enter vehicle type">
+                    <div *ngIf="vehiculeForm.controls['vehicle_type'].invalid && vehiculeForm.controls['vehicle_type'].touched" class="alert alert-danger">
+                        Vehicle Type is required.
+                    </div><br>
+            
+                    <label for="vehicle_registration_date">Vehicle Registration Date</label> <span>*</span>
+                    <input type="date" class="form-control" id="vehicle_registration_date" formControlName="vehicle_registration_date">
+                    <div *ngIf="vehiculeForm.controls['vehicle_registration_date'].invalid && vehiculeForm.controls['vehicle_registration_date'].touched" class="alert alert-danger">
+                        Vehicle Registration Date is required.
+                    </div><br>
+    
+                    <label for="vehicle_fuel">Vehicle Fuel</label> <span>*</span>
+                    <input type="text" class="form-control" id="vehicle_fuel" formControlName="vehicle_fuel" placeholder="Enter vehicle fuel">
+                    <div *ngIf="vehiculeForm.controls['vehicle_fuel'].invalid && vehiculeForm.controls['vehicle_fuel'].touched" class="alert alert-danger">
+                        Vehicle Fuel is required.
+                    </div><br>
+    
+                    <label for="vehicle_gearbox"><strong>Vehicle Gearbox</strong></label> <span>*</span><br>
+                    <input style="margin-left: 25px;" type="radio" value="Automatic" name="vehicle_gearbox" formControlName="vehicle_gearbox">Automatic<br>
+                    <input style="margin-left: 25px;" type="radio" value="Manual" name="vehicle_gearbox" formControlName="vehicle_gearbox">Manual<br><br>
+    
+                    <label for="vehicle_color">Vehicle Color</label> <span>*</span>
+                    <input type="text" class="form-control" id="vehicle_color" formControlName="vehicle_color" placeholder="Enter vehicle color">
+                    <div *ngIf="vehiculeForm.controls['vehicle_color'].invalid && vehiculeForm.controls['vehicle_color'].touched" class="alert alert-danger">
+                        Vehicle Color is required.
+                    </div><br>
+                    <br><br>
+                    <button type="button" class="btn btn-primary" (click)="addInsuredForm()" [disabled]="addInsuredButtonClicked"><i class="fa-solid fa-plus" aria-hidden="true"></i>&nbsp;Add Insured</button>
+                    <button type="button" class="btn btn-primary" (click)="removeVehiculeForm(i)"><i class="fa-solid fa-minus" aria-hidden="true"></i>&nbsp;Remove Vehicle</button>
+                </form>
+                <br><br>
+                <hr>
+            </div>
+            <br><br>
+        </div>
+        <br>
+        <button type="button" class="btn btn-success" (click)="revenir()"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back</button>
+        <button type="button" (click)="onResetForm()" class="btn btn-success"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</button>
+        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i>&nbsp;Save</button>
+    </form>
+</div>
+<br><br>

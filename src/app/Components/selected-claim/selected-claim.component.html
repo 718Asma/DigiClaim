@@ -1,0 +1,24 @@
+<div *ngIf="claim">
+  <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #00A487;">
+      <div class="container-fluid">
+            <h1 style="float: left; margin-left: 25px; margin-top: 15px; font-size: xx-large; color: white;">
+                <img src="../../../assets/digiconstat_logo.jpg" alt="claims" style="width: 50px; height: 50px; border-radius: 50%;">&nbsp;
+                DigiClaim
+            </h1>
+          <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto" style="margin-left: 85%;">
+                  <li class="nav-item">
+                      <a class="nav-link" routerLinkActive="actif" [routerLink]="['/claims', claim.claim_number, 'details', claim.claim_number]">Claim</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" routerLinkActive="actif" [routerLink]="['/claims', claim.claim_number, 'contract', claim.claim_number]">Contract</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" routerLinkActive="actif" [routerLink]="['/claims', claim.claim_number, 'photo', claim.claim_number]">Photo</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+</div>
+<router-outlet></router-outlet>

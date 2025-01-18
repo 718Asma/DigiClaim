@@ -1,0 +1,29 @@
+div
+{    
+    width: 410px;
+    height: 300px;
+    margin-left: 550px;
+    padding: 30px 25px 25px 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+h1
+{
+    margin-left: 670px;
+    margin-top: 100px;
+    font-size: xxx-large;
+}
+
+img
+{
+    width: 100px;
+    height: 100px;
+    margin-left: 50px;
+}
+
+button
+{
+    font-size: large;
+}

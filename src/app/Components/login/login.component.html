@@ -1,0 +1,15 @@
+<h1 class="text-secondary">
+    <img src="../../../assets/digiconstat_logo.jpg" alt="DigiClaim"><br><br>
+    Digi<span style="color: black;">Claim</span>
+</h1><br>
+<div>
+    <p style="font-size: x-large;" class="text-left text-secondary">Authentification</p>
+    <hr>
+    <br>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <input type="text" placeholder="Email or phone number" name="login" class="form-control" formControlName="username"><br>
+        <input type="password" placeholder="Password" name="password" class="form-control" formControlName="password">
+        <br><br>
+        <button type="submit" class="btn btn-warning btn-md btn-block text-center form-control" style="height: 45px;">Se connecter</button>
+    </form>
+</div>

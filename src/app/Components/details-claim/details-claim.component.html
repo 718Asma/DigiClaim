@@ -1,0 +1,28 @@
+<div *ngIf="claim">
+    <table class="table table-striped table-responsive">
+        <tbody>
+            <tr>
+                <th>Claim Number</th>
+                <td>{{ claim.claim_number }}</td>
+            </tr>
+            <tr>
+                <th>Accident Date</th>
+                <td>{{ claim.accident_date | date }}</td>
+            </tr>
+            <tr>
+                <th>Creation Date</th>
+                <td>{{ claim.creation_date | date }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ claim.status }}</td>
+            </tr>
+            <tr>
+                <th>Contract Number</th>
+                <td>{{ claim.contract_number }}</td>
+            </tr>
+        </tbody>
+        
+    </table>
+    <button (click)="revenir()" class="btn btn-primary" style="float: right; margin-right: 50px;"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back</button>
+</div>

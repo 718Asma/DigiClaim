@@ -1,0 +1,80 @@
+<table class="table table-striped table-responsive" *ngIf="contract">
+    <tbody>
+        <tr>
+            <th>Contract Number</th>
+            <td>{{ contract.contract_number }}</td>
+        </tr>
+        <tr>
+            <th>Contract Start Date</th>
+            <td>{{ contract.contract_start_date | date }}</td>
+        </tr>
+        <tr>
+            <th>Contract End Date</th>
+            <td>{{ contract.contract_end_date | date }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-striped table-responsive" *ngIf="insured">
+    <tbody>
+        <tr>
+            <th>Insured Name</th>
+            <td>{{ insured.insured_name }}</td>
+        </tr>
+        <tr>
+            <th>Insured Address</th>
+            <td>{{ insured.insured_address }}</td>
+        </tr>
+        <tr>
+            <th>Insured Birth Date</th>
+            <td>{{ insured.insured_birth_date |date }}</td>
+        </tr>
+        <tr>
+            <th>Insured Email</th>
+            <td>{{ insured.insured_email }}</td>
+        </tr>
+        <tr>
+            <th>Insured Phone Number</th>
+            <td>{{ insured.insured_phone_number }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-striped table-responsive" *ngIf="vehicle">
+    <tbody>
+        <tr>
+            <th>Vehicle Registration Number</th>
+            <td>{{ vehicle.vehicle_registration_number }}</td>
+        </tr>
+        <tr>
+            <th>Vehicle Registration Date</th>
+            <td>{{ vehicle.vehicle_registration_date | date }}</td>
+        </tr>
+        <tr>
+            <th>Vehicle Brand</th>
+            <td>{{ vehicle.vehicle_brand }}</td>
+        </tr>
+        <tr>
+            <th>Vehicle Model</th>
+            <td>{{ vehicle.vehicle_model }}</td>
+        </tr>
+        <tr>
+            <th>Vehicle Type</th>
+            <td>{{ vehicle.vehicle_type }}</td>
+        </tr>
+        <tr>
+            <th>Vehicle Color</th>
+            <td>{{ vehicle.vehicle_color }}</td>
+        </tr>
+        <tr>
+            <th>Vehicle Fuel</th>
+            <td>{{ vehicle.vehicle_fuel }}</td>
+        </tr>
+        <tr>
+            <th>Vehicle Gearbox</th>
+            <td>{{ vehicle.vehicle_gearbox }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<button (click)="revenir()" class="btn btn-primary" style="float: right; margin-right: 50px;"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back</button>
